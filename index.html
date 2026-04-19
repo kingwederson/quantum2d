@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Simulador de Partículas</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  
+  <div id="ui">
+    <h2>⚛️ Simulador | c = 30 | Criação de Pares</h2>
+    
+    <label>📌 Tipo de Partícula (31 tipos):</label>
+    <select id="typeSelect">
+      <optgroup label="🟦 Léptons">
+        <option value="electron">Elétron (e⁻)</option>
+        <option value="muon">Múon (μ⁻)</option>
+        <option value="tau">Tau (τ⁻)</option>
+        <option value="nu_e">Neutrino (ν<sub>e</option>)</option>
+        <option value="nu_mu">Muonino (ν<sub>μ</sub>)</option>
+        <option value="nu_tau">Tauino (ν<sub>τ</sub>)</option>
+      </optgroup>
+      <optgroup label="🟥 Antiléptons">
+        <option value="positron">Positron (e⁺)</option>
+        <option value="antimuon">Antimúon (μ⁺)</option>
+        <option value="antitau">Antitau (τ⁺)</option>
+        <option value="anti_nu_e">Anti-Neutrino (ῡ<sub>e</option>)</option>
+        <option value="anti_nu_mu">Anti-Muonino (ῡ<sub>μ</sub>)</option>
+        <option value="anti_nu_tau">Anti-Tauino (ῡ<sub>τ</sub>)</option>
+      </optgroup>
+      <optgroup label="🟨 Quarks">
+        <option value="up">Up (u)</option><option value="down">Down (d)</option><option value="charm">Charm (c)</option>
+        <option value="strange">Strange (s)</option><option value="top">Top (t)</option><option value="bottom">Bottom (b)</option>
+      </optgroup>
+      <optgroup label="🟧 Antiquarks">
+        <option value="antiup">Anti-Up (ū)</option><option value="antidown">Anti-Down (d̄)</option>
+        <option value="anticharm">Anti-Charm (c̄)</option><option value="antistrange">Anti-Strange (s̄)</option>
+        <option value="antitop">Anti-Top (t̄)</option><option value="antibottom">Anti-Bottom (b̄)</option>
+      </optgroup>
+      <optgroup label="🟩 Bósons + Gráviton">
+        <option value="photon">Fóton (γ)</option><option value="gluon">Gluon (g)</option><option value="wplus">W⁺</option>
+        <option value="wminus">W⁻</option><option value="z">Z⁰</option><option value="higgs">Higgs (H)</option><option value="graviton">Gráviton (G)</option>
+      </optgroup>
+    </select>
+
+    <label>Velocidade inicial (max c=30):</label>
+    <input type="number" id="speedInput" value="0" min="0" max="30" step="1">
+    <label>Direção (graus):</label>
+    <input type="number" id="angleInput" value="0" min="0" max="359" step="1">
+
+    <div style="display: flex; gap: 8px;">
+      <button id="btnAdd">➕ Adicionar Partícula</button>
+      <button id="btnRandom">🎲 Aleatória</button>
+    </div>
+    
+    <div style="display: flex; gap: 8px; margin: 6px 0;">
+      <button id="btnPause" style="flex:1;">⏸️ Pausar</button>
+      <button id="btnRestart" style="flex:1;">🔄 Limpar Tudo</button>
+    </div>
+
+    <div class="zoom-group">
+      <button id="zoomOutBtn">➖ Zoom Out</button>
+      <button id="zoomInBtn">➕ Zoom In</button>
+      <button id="resetViewBtn">🖥️ Visão Padrão</button>
+    </div>
+
+    <div id="status">
+      🔹 Partículas: <span id="count">0</span> | <span id="state">Rodando</span><br>
+      💥 Colisões: criação de pares se E_cm ≥ 2·m_repouso<br>
+      ⚡ Velocidade da luz (c) = 30 | Fótons voam à velocidade da luz!
+    </div>
+    <div class="energy-bar"><div class="energy-fill" id="energyFill"></div></div>
+    <div class="hint">
+      💡 <strong>Correções aplicadas:</strong><br>
+      • <strong>Aniquilação e⁻ + e⁺:</strong> gera dois fótons em direções opostas com velocidade = c.<br>
+      • <strong>Glúon:</strong> agora sem strongCharge (não sente força forte).<br>
+      • <strong>Fótons:</strong> não interagem via força forte (strongCharge=0).<br>
+      • Clique para adicionar | Espaço: pausa.
+    </div>
+  </div>
+
+  <script src="js/constants.js"></script>
+  <script src="js/particle-defs.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/forces.js"></script>
+  <script src="js/collisions.js"></script>
+  <script src="js/camera.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/particle.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
