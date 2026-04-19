@@ -209,17 +209,12 @@ function handleCollisions() {
           const vx_cm = totalPx / totalMass;
           const vy_cm = totalPy / totalMass;
           
-          // Criar hadron
-          const hadronDef = PARTICLE_DEFS.hadron;
-          const hadronMass = Math.max(hadronDef.m0, totalMass);  // Pelo menos a massa mínima do hadron
-          newParticles.push(createBodyObject((a.x + b.x)/2, (a.y + b.y)/2, hadronMass, vx_cm, vy_cm, 0, hadronDef.hue, hadronDef.symbol, hadronDef.flavor, false, 0, 0, hadronDef.lightness));
-          
           toRemove.add(i); toRemove.add(j);
           continue;
         }
         
         // Colisões inelásticas gerais: produção de partículas se energia suficiente
-        if (!isAnnihilation && !isQuarkCollision && E_cm >= minPairMass && Math.random() < 0.05) {  // 5% chance para colisões gerais
+        if (!isAnnihilation && !isQuarkCollision && E_cm >= minPairMass && Math.random() < 0.01) {  // 5% chance para colisões gerais
           const collisionX = (a.x + b.x)/2, collisionY = (a.y + b.y)/2;
           const products = tryCreatePair(a, b, collisionX, collisionY, px_total, py_total, E_total);
           if (products && products.length === 2) {

@@ -25,7 +25,7 @@ const PARTICLE_DEFS = {
   bottom:       {name:"Bottom",      symbol:"b",   m0:256,  charge:-1/3,  hue:80,  lightness:70, flavor:"bottom",isAnti:false, strongCharge:1, weakCharge:-1},
   
   // Antiquarks
-  antiup:       {name:"Anti-Up",     symbol:"ū",   m0:4,   charge:-2/3,  hue:30,  lightness:30, flavor:"up",    isAnti:true,  strongCharge:1, weakCharge:-1},
+  antiup:       {name:"Anti-Up",     symbol:"ū",   m0:8,   charge:-2/3,  hue:30,  lightness:30, flavor:"up",    isAnti:true,  strongCharge:1, weakCharge:-1},
   antidown:     {name:"Anti-Down",   symbol:"d̄",   m0:8,   charge:1/3,   hue:40,  lightness:30, flavor:"down",  isAnti:true,  strongCharge:1, weakCharge:1},
   anticharm:    {name:"Anti-Charm",  symbol:"c̄",   m0:64,  charge:-2/3,  hue:50,  lightness:30, flavor:"charm", isAnti:true,  strongCharge:1, weakCharge:-1},
   antistrange:  {name:"Anti-Strange",symbol:"s̄",   m0:16,    charge:1/3,   hue:60,  lightness:30, flavor:"strange",isAnti:true,  strongCharge:1, weakCharge:1},
@@ -39,8 +39,8 @@ const PARTICLE_DEFS = {
   wminus:       {name:"W⁻",          symbol:"W⁻",  m0:512, charge:-1,    hue:300, saturation:80, lightness:30, flavor:"w",     isAnti:true,  strongCharge:0, weakCharge:0},
   z:            {name:"Z⁰",          symbol:"Z⁰",   m0:1024,charge:0,   hue:310, saturation:80, lightness:50, flavor:"z",     isAnti:false, strongCharge:0, weakCharge:0},
   higgs:        {name:"Higgs",       symbol:"H",   m0:2048,charge:0,   hue:320, saturation:80, lightness:50, flavor:"higgs", isAnti:false, strongCharge:0, weakCharge:0},
-  graviton:     {name:"Gráviton",    symbol:"G",   m0:0,     charge:0,     hue:280, saturation:80, lightness:50, flavor:"graviton",isAnti:false, strongCharge:0, weakCharge:0},
-  hadron:       {name:"Hadrão",      symbol:"H*",  m0:1000,  charge:0,     hue:100, saturation:80, lightness:70, flavor:"hadron", isAnti:false, strongCharge:0, weakCharge:0},};
+  graviton:     {name:"Gráviton",    symbol:"G",   m0:0,     charge:0,     hue:280, saturation:80, lightness:50, flavor:"graviton",isAnti:false, strongCharge:0, weakCharge:0}
+};
 
 // Lista de chaves para uso aleatório
 const PARTICLE_KEYS = Object.keys(PARTICLE_DEFS);
