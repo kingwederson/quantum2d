@@ -109,39 +109,6 @@ function handleCollisions() {
       const sumR = a.radius + b.radius;
       if (r < sumR && r > 0.01) {
         
-        // Aniquilação elétron-pósitron com fótons
-        const isElectronPositron = (a.flavor === "e" && b.flavor === "e" && a.isAnti !== b.isAnti);
-        
-        if (isElectronPositron) {
-          const midX = (a.x + b.x)/2, midY = (a.y + b.y)/2;
-          const totalPx = a.mass * a.vx + b.mass * b.vx;
-          const totalPy = a.mass * a.vy + b.mass * b.vy;
-          const norm = Math.hypot(totalPx, totalPy);
-          
-          const photonSpeed = C_LIGHT * 0.98;
-          
-          let dirX, dirY;
-          if (norm > 0.01) {
-            dirX = totalPx / norm;
-            dirY = totalPy / norm;
-          } else {
-            const angle = Math.random() * 2 * Math.PI;
-            dirX = Math.cos(angle);
-            dirY = Math.sin(angle);
-          }
-          
-          const v1x = dirX * photonSpeed;
-          const v1y = dirY * photonSpeed;
-          const v2x = -dirX * photonSpeed;
-          const v2y = -dirY * photonSpeed;
-          
-          const photonDef = PARTICLE_DEFS.photon;
-          newParticles.push(createBodyObject(midX, midY, 0, v1x, v1y, 0, photonDef.hue, "γ", "photon", false, 0, 0, photonDef.lightness));
-          newParticles.push(createBodyObject(midX, midY, 0, v2x, v2y, 0, photonDef.hue, "γ", "photon", false, 0, 0, photonDef.lightness));
-          toRemove.add(i); toRemove.add(j);
-          continue;
-        }
-        
         // Aniquilação genérica partícula-antipartícula
         const isAnnihilation = (a.flavor === b.flavor && a.isAnti !== b.isAnti && a.m0 > 0 && b.m0 > 0);
         if (isAnnihilation && (a.flavor !== "photon" && a.flavor !== "gluon")) {
@@ -168,8 +135,8 @@ function handleCollisions() {
           const v2y = -dirY * photonSpeed;
           
           const photonDef = PARTICLE_DEFS.photon;
-          newParticles.push(createBodyObject(midX, midY, 0, v1x, v1y, 0, photonDef.hue, "γ", "photon", false, 0, 0, photonDef.lightness));
-          newParticles.push(createBodyObject(midX, midY, 0, v2x, v2y, 0, photonDef.hue, "γ", "photon", false, 0, 0, photonDef.lightness));
+          newParticles.push(createBodyObject(midX, midY, 0, v1x, v1y, 0, photonDef.hue, "γ", "photon", false, 0, 0, photonDef.materia));
+          newParticles.push(createBodyObject(midX, midY, 0, v2x, v2y, 0, photonDef.hue, "γ", "photon", false, 0, 0, photonDef.materia));
           toRemove.add(i); toRemove.add(j);
           continue;
         }
@@ -193,7 +160,7 @@ function handleCollisions() {
           const products = tryCreatePair(a, b, collisionX, collisionY, px_total, py_total, E_total);
           if (products && products.length === 2) {
             for (let prod of products) {
-              newParticles.push(createBodyObject(collisionX, collisionY, prod.def.m0, prod.vx, prod.vy, prod.def.charge, prod.def.hue, prod.def.symbol, prod.def.flavor, prod.def.isAnti, prod.def.strongCharge, prod.def.weakCharge, prod.def.lightness));
+              newParticles.push(createBodyObject(collisionX, collisionY, prod.def.m0, prod.vx, prod.vy, prod.def.charge, prod.def.hue, prod.def.symbol, prod.def.flavor, prod.def.isAnti, prod.def.strongCharge, prod.def.weakCharge, prod.def.materia));
             }
             toRemove.add(i); toRemove.add(j);
             continue;
@@ -219,7 +186,7 @@ function handleCollisions() {
           const products = tryCreatePair(a, b, collisionX, collisionY, px_total, py_total, E_total);
           if (products && products.length === 2) {
             for (let prod of products) {
-              newParticles.push(createBodyObject(collisionX, collisionY, prod.def.m0, prod.vx, prod.vy, prod.def.charge, prod.def.hue, prod.def.symbol, prod.def.flavor, prod.def.isAnti, prod.def.strongCharge, prod.def.weakCharge, prod.def.lightness));
+              newParticles.push(createBodyObject(collisionX, collisionY, prod.def.m0, prod.vx, prod.vy, prod.def.charge, prod.def.hue, prod.def.symbol, prod.def.flavor, prod.def.isAnti, prod.def.strongCharge, prod.def.weakCharge, prod.def.materia));
             }
             toRemove.add(i); toRemove.add(j);
             continue;

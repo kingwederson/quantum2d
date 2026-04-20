@@ -1,7 +1,7 @@
 // ==================== GERENCIAMENTO DE PARTÍCULAS ====================
 let bodies = [];
 
-function createBodyObject(x, y, m0, vx, vy, charge, hue, symbol, flavor, isAnti, strongCharge, weakCharge, lightness) {
+function createBodyObject(x, y, m0, vx, vy, charge, hue, symbol, flavor, isAnti, strongCharge, weakCharge, materia) {
   let { vx: limitedVx, vy: limitedVy, speed } = limitSpeed(vx, vy);
   
   // Partículas sem massa (fótons, gluons, grávitons) sempre viajam à velocidade máxima
@@ -28,15 +28,15 @@ function createBodyObject(x, y, m0, vx, vy, charge, hue, symbol, flavor, isAnti,
     vx: limitedVx, vy: limitedVy, 
     m0: m0, 
     mass: effectiveMass, 
-    charge, radius, hue, symbol, flavor, lightness,
+    charge, radius, hue, symbol, flavor, materia,
     isAnti, strongCharge, weakCharge, 
     gamma: gamma,
     ax: 0, ay: 0
   };
 }
 
-function createBody(x, y, m0, vx, vy, charge, hue, symbol, flavor, isAnti, strongCharge, weakCharge, lightness) {
-  bodies.push(createBodyObject(x, y, m0, vx, vy, charge, hue, symbol, flavor, isAnti, strongCharge, weakCharge, lightness));
+function createBody(x, y, m0, vx, vy, charge, hue, symbol, flavor, isAnti, strongCharge, weakCharge, materia) {
+  bodies.push(createBodyObject(x, y, m0, vx, vy, charge, hue, symbol, flavor, isAnti, strongCharge, weakCharge, materia));
 }
 
 function removeBody(index) {

@@ -51,13 +51,13 @@ function drawGrid() {
 
 function drawParticle(p) {
   ctx.shadowBlur = 50;
-  ctx.shadowColor = `hsl(${p.hue}, 80%, ${p.lightness + 5}%)`;
-  ctx.fillStyle = `hsl(${p.hue}, 80%, ${p.lightness}%)`;
+  ctx.shadowColor = `hsl(${(p.hue+10)%360}, 80%, 100%)`;
+  ctx.fillStyle = `hsl(${(p.hue+10)%360}, 100%, ${50+10*p.materia}%)`;
   ctx.beginPath();
   ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
   ctx.fill();
-  ctx.shadowBlur = 50;
-  ctx.fillStyle = `hsl(${(p.hue + 60) % 360}, 80%, ${(p.lightness + 50) % 100}%)`;
+  ctx.shadowBlur = 10;
+  ctx.fillStyle = `hsl(${(p.hue+190)%360}, 100%, 0%)`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText(p.symbol, p.x, p.y);
